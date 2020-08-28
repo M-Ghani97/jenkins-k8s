@@ -27,5 +27,13 @@ pipeline {
         }
       }
     }
+    stage('Deploy') {
+      steps {
+        script {
+          sh 'sudo kubectl create -f webapp.yaml'
+          sh 'sudo kubectl get all'
+        }
+      }
+    }
   }
 }
