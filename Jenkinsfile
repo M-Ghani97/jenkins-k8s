@@ -19,8 +19,10 @@ pipeline {
       }
     }
     stage('Minikube') {
-      script {
-        sh "sudo minikube ip"
+      steps{
+        script {
+          sh "sudo minikube ip"
+        }
       }
     }
   }
