@@ -19,10 +19,11 @@ pipeline {
       }
     }
     stage('Push Image') {
-      steps{
+      steps {
         script {
           docker.withRegistry( "" ) {
-          dockerImage.push()
+            dockerImage.push()
+          }
         }
       }
     }
