@@ -3,7 +3,7 @@ pipeline {
   environment {
     registry = "localhost:5000/node-test-app_jenkins"
     dockerImage = ""
-    Deploy = true
+    Deploy = "true"
   }
   stages {
     stage('Poll SCM') {
@@ -30,7 +30,7 @@ pipeline {
     }
     stage('Deploy') {
       when {
-        expression { Deploy == true }
+        expression { Deploy == "true" }
       }
       steps {
         script {
@@ -41,7 +41,7 @@ pipeline {
     }
     stage('Update') {
       when {
-        expression { Deploy == false }
+        expression { Deploy == "false" }
       }
       steps {
         script {
