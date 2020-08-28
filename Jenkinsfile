@@ -18,10 +18,11 @@ pipeline {
         }
       }
     }
-    stage('Minikube') {
+    stage('Push Image') {
       steps{
         script {
-          sh "sudo minikube ip"
+          docker.withRegistry( "" ) {
+          dockerImage.push()
         }
       }
     }
