@@ -14,8 +14,13 @@ pipeline {
     stage('Build Image') {
       steps {
         script {
-          dockerImage = docker.build("${registry}:${BUILD_NUMBER}", "node-test" ) 
+          dockerImage = docker.build("${registry}:${BUILD_NUMBER}", "node-test") 
         }
+      }
+    }
+    stage('Minikube') {
+      script {
+        sh "sudo minikube ip"
       }
     }
   }
