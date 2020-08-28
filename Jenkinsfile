@@ -30,7 +30,7 @@ pipeline {
     }
     stage('Deploy') {
       when {
-        expression { Deploy = true }
+        expression { Deploy == true }
       }
       steps {
         script {
@@ -41,7 +41,7 @@ pipeline {
     }
     stage('Update') {
       when {
-        expression { Deploy = false }
+        expression { Deploy == false }
       }
       steps {
         script {
