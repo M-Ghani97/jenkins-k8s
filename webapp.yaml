@@ -1,0 +1,33 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    app: node-app
+  name: test-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: node-app
+  template:
+    metadata:
+      labels:
+        app: node-app
+    spec:
+      containers:
+      - name: node-app-container
+        image: localhost:5000/node-test-app:v1
+        imagePullPolicy: Always
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: test-service
+spec:
+  ports:
+  - port: 8050
+    targetPort: 3000
+  type: LoadBalancer
+  selector:
+    app: node-app
