@@ -3,6 +3,7 @@ pipeline {
   environment {
     registry = "localhost:5000/node-test-app_jenkins"
     dockerImage = ""
+    Deploy = true
   }
   stages {
     stage('Poll SCM') {
@@ -28,11 +29,19 @@ pipeline {
       }
     }
     stage('Deploy') {
+      when {
+        expression { Deploy = true }
+      }
       steps {
         script {
           sh 'sudo kubectl create -f webapp.yaml'
           sh 'sudo kubectl get all'
         }
+      }
+    }
+    stage('Update') {
+      script {
+        sh "sudo kubectl set image deployment.apps/test-deployment node-app-container=${registry}:${BUILD_NUMBER}"
       }
     }
   }
