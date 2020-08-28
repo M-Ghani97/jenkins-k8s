@@ -40,8 +40,10 @@ pipeline {
       }
     }
     stage('Update') {
-      script {
-        sh "sudo kubectl set image deployment.apps/test-deployment node-app-container=${registry}:${BUILD_NUMBER}"
+      steps {
+        script {
+          sh "sudo kubectl set image deployment.apps/test-deployment node-app-container=${registry}:${BUILD_NUMBER}"
+        }
       }
     }
   }
