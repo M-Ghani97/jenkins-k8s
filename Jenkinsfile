@@ -3,7 +3,7 @@ pipeline {
   environment {
     registry = "localhost:5000/node-test-app_jenkins"
     dockerImage = ""
-    Deploy = "true"
+    Deploy = "false"
   }
   stages {
     stage('Poll SCM') {
