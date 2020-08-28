@@ -40,6 +40,9 @@ pipeline {
       }
     }
     stage('Update') {
+      when {
+        expression { Deploy = false }
+      }
       steps {
         script {
           sh "sudo kubectl set image deployment.apps/test-deployment node-app-container=${registry}:${BUILD_NUMBER}"
